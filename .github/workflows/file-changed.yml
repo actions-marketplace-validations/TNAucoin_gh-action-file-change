@@ -43,4 +43,4 @@ jobs:
         token: ${{secrets.REPO_ACCESS_TOKEN}}
         repository: tnaucoin/gh-action-process
         event-type: dispatch-event
-        client-payload: '{"ref": "${{ github.ref }}", "github": ${{toJson(github) }}"}'
+        client-payload: '{"ref": "${{ github.ref }}", "github": ${{ toJson(github) }}"}'
