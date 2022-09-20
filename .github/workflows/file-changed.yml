@@ -38,8 +38,9 @@ jobs:
       run: echo publish docs
     
     - name: Dispatch
-      run: |
-        curl -X POST https://<> \
-        -H 'Accept: application/vnd.github.everest-preview+json' \
-        -U ${{secrets.ACCESS_TOKEN}} \
-        --data '{"event_type":"ping", "client_payload": {"repository":"'"$GITHUB_REPOSITORY"'"}}'
+      uses: peter-evans/repository-dispatch@v2
+      with:
+        token: ${{secrets.REPO_ACCESS_TOKEN}}
+        repository: tnaucoin/gh-action-process
+        event-type: dispatch-event
+        client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
