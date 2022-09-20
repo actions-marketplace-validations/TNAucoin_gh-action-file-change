@@ -36,3 +36,10 @@ jobs:
     steps:
     - shell: pwsh
       run: echo publish docs
+    
+    - name: Dispatch
+      run: |
+        curl -X POST https://<> \
+        -H 'Accept: application/vnd.github.everest-preview+json' \
+        -U ${{secrets.ACCESS_TOKEN}} \
+        --data '{"event_type":"ping", "client_payload": {"repository":"'"$GITHUB_REPOSITORY"'"}}'
