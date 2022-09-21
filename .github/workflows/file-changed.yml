@@ -18,8 +18,8 @@ jobs:
         uses: tj-actions/changed-files@v29
         with:
           files: |
-            *.spec.yaml
-            *.oast.yaml
+            **/*.spec.yaml
+            **/*.oast.yaml
 
       - name: Dispatch
         if: steps.changed-files-specific.outputs.any_changed == 'true'
