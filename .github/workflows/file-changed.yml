@@ -21,6 +21,7 @@ jobs:
           files: |
             **/*.spec.yaml
             **/*.oast.yaml
+      - name: Output
         run: echo "${{steps.changed-files.outputs}}"
 
       - name: Dispatch
