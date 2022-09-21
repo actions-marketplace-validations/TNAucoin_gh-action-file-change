@@ -19,8 +19,8 @@ jobs:
         with:
           dir_names: "true"
           files: |
-            **/*.spec.yaml
-            **/*.oast.yaml
+            *.spec.yaml
+            *.oast.yaml
       - name: Output
         run: echo "${{steps.changed-files.outputs}}"
 
