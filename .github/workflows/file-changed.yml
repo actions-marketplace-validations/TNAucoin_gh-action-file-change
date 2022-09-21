@@ -11,7 +11,7 @@ jobs:
     outputs:
       docs_changed: ${{ steps.check_file_changed.outputs.docs_changed }}
     steps:
-    - uses: actions/checkout@v29
+    - uses: actions/checkout@v2
       with:
         files: |
           docs/**
