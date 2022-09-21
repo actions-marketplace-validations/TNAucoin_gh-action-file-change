@@ -17,9 +17,8 @@ jobs:
         id: changed-files-specific
         uses: tj-actions/changed-files@v29
         with:
-          dir_names: "true"
           files: |
-            docs/
+            *.spec.yml
 
       - name: Dispatch
         if: steps.changed-files-specific.outputs.any_changed == 'true'
