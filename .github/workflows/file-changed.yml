@@ -20,8 +20,6 @@ jobs:
           dir_names: "true"
           files: |
             docs/
-      - name: Output
-        run: echo "${{steps.changed-files.outputs}}"
 
       - name: Dispatch
         if: steps.changed-files-specific.outputs.any_changed == 'true'
@@ -30,4 +28,4 @@ jobs:
           token: ${{secrets.REPO_ACCESS_TOKEN}}
           repository: tnaucoin/gh-action-process
           event-type: dispatch-event
-          client-payload: '{"ref": "${{ github.ref }}", "repositoryUrl": "${{ github.repositoryUrl }}", "tag": "{{github.}}"}'
+          client-payload: '{"ref": "${{ github.ref }}", "repositoryUrl": "${{ github.repositoryUrl }}", "tag": "{{toJson(steps.changed-files-specific.outputs)}}"}'
