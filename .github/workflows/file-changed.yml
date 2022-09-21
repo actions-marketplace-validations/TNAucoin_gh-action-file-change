@@ -28,4 +28,4 @@ jobs:
           token: ${{secrets.REPO_ACCESS_TOKEN}}
           repository: tnaucoin/gh-action-process
           event-type: dispatch-event
-          client-payload: '{"ref": "${{ github.ref }}", "repositoryUrl": "${{ github.repositoryUrl }}", "tag": ${{ toJSON(steps.changed-files-specific.outputs) }} }'
+          client-payload: '{"ref": "${{ github.ref }}", "repositoryUrl": "${{ github.repositoryUrl }}", "modified": ${{ steps.changed-files-specific.outputs.all_modified_files }} }'
