@@ -11,10 +11,10 @@ jobs:
     outputs:
       docs_changed: ${{ steps.check_file_changed.outputs.docs_changed }}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@latest
       with:
-        # Checkout as many commits as needed for the diff
-        fetch-depth: 2
+        files: |
+          docs/**
     - shell: pwsh
       id: check_file_changed
       run: |
