@@ -19,6 +19,7 @@ jobs:
         with:
           files: |
             docs/**
+            *.spec.yaml
 
       - name: Dispatch
         if: steps.changed-files-specific.outputs.any_changed == 'true'
