@@ -23,8 +23,7 @@ jobs:
   # Run the job only with "docs_changed" equals "True"
   conditional_job:
     runs-on: 'ubuntu-20.04'
-    needs: [ changed-files-specific ]
-    if: needs.changed-files-specific.outputs.any_changed == 'true'
+    if: steps.changed-files-specific.outputs.any_changed == 'true'
     steps:
     - shell: pwsh
       run: echo publish docs
