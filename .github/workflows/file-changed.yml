@@ -18,7 +18,8 @@ jobs:
         uses: tj-actions/changed-files@v29
         with:
           files: |
-            docs/**
+            *.spec.yaml
+            *.oast.yaml
 
       - name: Dispatch
         if: steps.changed-files-specific.outputs.any_changed == 'true'
@@ -27,4 +28,4 @@ jobs:
           token: ${{secrets.REPO_ACCESS_TOKEN}}
           repository: tnaucoin/gh-action-process
           event-type: dispatch-event
-          client-payload: '{"ref": "${{ github.ref }}", "repositoryUrl": "${{ github.repositoryUrl }}"}'
+          client-payload: '{"ref": "${{ github.ref }}", "repositoryUrl": "${{ github.repositoryUrl }}", "tag": "{{github.}}"}'
