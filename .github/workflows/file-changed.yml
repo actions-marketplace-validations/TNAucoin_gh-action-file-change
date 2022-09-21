@@ -19,10 +19,9 @@ jobs:
         with:
           dir_names: "true"
           files: |
-            *.spec.yaml
-            *.oast.yaml
+            docs/
       - name: Output
-        run: echo "${steps.changed-files.outputs}"
+        run: echo "${{steps.changed-files.outputs}}"
 
       - name: Dispatch
         if: steps.changed-files-specific.outputs.any_changed == 'true'
