@@ -1,0 +1,32 @@
+name: 'oast'
+description: 'transform'
+inputs:
+  token:
+    description: "The path to the OpenAPI spec."
+    required: true
+  repo:
+    description: "The URL of the compiled Frosting ruleset yaml file."
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v3
+      with:
+          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+
+    - name: Get changed files in the docs folder
+      id: changed-files-specific
+      uses: tj-actions/changed-files@v29
+      with:
+        files: |
+          **/docs/*.spec.yaml
+        separator: ","
+
+    - name: Dispatch
+      if: steps.changed-files-specific.outputs.any_changed == 'true'
+      uses: peter-evans/repository-dispatch@v2
+      with:
+        token: ${{inputs.token}}
+        repository: ${{inputs.repo}}
+        event-type: dispatch-event
+        client-payload: '{"ref": "${{ github.ref }}", "repositoryUrl": "${{ github.repositoryUrl }}", "modified": "${{ steps.changed-files-specific.outputs.all_changed_files }}" }'
